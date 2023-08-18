@@ -1,0 +1,88 @@
+{% macro receiptContainer(display_name, songs, id, duration)-%}
+<!-- making a function that will extract all the things that will be displayed
+on the receipt -->
+
+<div class = "receiptContainer" id = "{{id}}">
+    <h2 class="logo">
+        Receiptify.CLONE
+    </h2>
+    
+    <p class = "period">
+        {{duration}}
+    </p>
+
+    <p class="date">
+        ORDER #00001 FOR {{display_name}}
+    </p>
+
+    <table class = "tracks">
+        <thead>
+        <!--thead = table head  -->
+            <tr>
+            <!--tr = table row  -->
+                <td class = "begin">
+                    QTY
+                </td>
+
+                <td>
+                    ITEM
+                </td>
+
+                <td class = "length">
+                    AMT
+                </td>
+            </tr>
+        </thead>
+
+        {% for song in songs %}
+
+            <tr>
+                <td class="begin">
+                    {{loop.index}}
+                </td>
+
+                <td class="name">
+                    {{song.name}} - {{song.artists[0].name}}
+                </td>
+
+                <td class = "length">
+                    {{ song.duration_ms | mmss}}
+                    <!-- displaying time in mm:ss format -->
+                </td>
+            </tr>
+        {% endfor %}
+        <!-- end of for loop -->
+            
+            <tr class = "total-counts">
+                <td class = "begin" colspan="2">
+                    ITEM COUNT:
+                </td>
+
+                <td class = "length">
+                    {{songs | length}}
+                    <!-- length gets the number of items in songs -->
+                </td>
+            </tr>
+
+            
+    </table>
+
+    <p class = "date">
+        CARD #: **** **** **** 6942
+    </p>
+
+    <p class = "date">
+        CARDHOLDER: {{display_name}}
+    </p>
+
+    <div class="thanks">
+        <p>
+            THANK YOU FOR VISITING!
+        </p>
+    </div>
+
+
+
+</div>
+
+{%- endmacro %}

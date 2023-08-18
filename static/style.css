@@ -1,0 +1,34 @@
+.receiptContainer {
+    background-image: url(wrinkled-paper.jpg);
+    background-position: center;
+    width: 340px;
+    filter: brightness(110%);
+    padding: 20px;
+    text-transform: uppercase;
+}
+
+p, table, .date {
+    font-family: "receipt", "Courier New", Courier, monospace;
+
+  }
+  
+  td {
+    padding: 0 5px;
+  }
+  
+  .tracks {
+    margin: 5px 0vh;
+  }
+  
+  table {
+    border: none;
+  }
+  
+  table {
+    max-width: 100%;
+    background-color: transparent;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }

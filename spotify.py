@@ -7,91 +7,12 @@ from requests import post,get
 import json
 import os
 
-CLIENT_ID = "a6b946c08bcb4b18a0a595c22d3bd90d"
-CLIENT_SECRET = "8ae15257972544c3831dcabaa7efda37"
+CLIENT_ID = "ABC"
+CLIENT_SECRET = "XYZ"
 TOKEN_INFO = "token_info"
 SHORT_TERM = "short_term"
 MEDIUM_TERM = "medium_term"
 LONG_TERM = "long_term"
-
-
-def get_temp_token():
-    auth_string = CLIENT_ID + ":" + CLIENT_SECRET
-    auth_byte = auth_string.encode("utf-8")#encoding the string into a 'utf-8' format
-    auth_base64 = str(base64.b64encode(auth_byte), "utf-8")#converting a base 64 object into string
-
-    url = "https://accounts.spotify.com/api/token"
-
-    headers = {
-        "Authorization": "Basic " + auth_base64,
-        "Content-Type": "application/x-www-form-urlencoded"
-
-    }
-    data = {"grant_type":"client_credentials"}
-
-    result = post(url, headers=headers, data=data)#results a json string which will be converted to a 
-    #python dictionary to access the data
-
-    #loads() means load from string
-    json_result = json.loads(result.content)
-
-    token = json_result["access_token"]
-    return token
-
-
-
-# def get_auth_head(token):
-#     return {"Authorization": "Bearer " + token}
-
-# def search_artists(token,name):
-#     url = "https://api.spotify.com/v1/search"
-#     headers = get_auth_head(token)
-#     query = f"?q={name}&type=artist&limit=1"
-#     #get artist with the given argument name and only give the top result, hency the limit of 1
-
-#     query_url = url + query
-#     result = get(query_url, headers=headers)
-
-#     json_result = json.loads(result.content)['artists']['items']
-
-#     if len(json_result) == 0:
-#         print("who is blud even looking for lmao")
-#         return None
-
-#     return (json_result[0])
-
-
-    # print(json_result)
-
-# def get_artist_song(token, artists_id):
-#     url = f"https://api.spotify.com/v1/artists/{artists_id}/top-tracks?country=US"
-#     #gets the top tracks of the given artist in USA
-
-#     headers = get_auth_head(token)
-
-#     result = get(url, headers=headers)
-
-#     json_result = json.loads(result.content)['tracks']
-
-#     return(json_result)
-
-
-
-# token = get_temp_token()
-# -----------------------------------------------
-# result = (search_artists(token, "The Weeknd"))
-
-# artist_id = result["id"]
-# #artist id needed to access the artist's stuff like music and whatnot
-
-# songs = get_artist_song(token, artist_id)
-
-# for index,song in enumerate(songs):
-#     print(f"{index + 1}. {song['name']}")
-
-#-------------------------------------------------
-
-
 
 
 app = Flask(__name__)
